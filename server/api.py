@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
-import google.generativeai as genai
+from flask import Flask, request, jsonify #pip install flask
+import google.generativeai as genai  #pip install google-generativeai
 
 highestStreak = 0
 totalAnswered = 0
