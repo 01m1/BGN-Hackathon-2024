@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+.slideContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 750px; 
+    margin: 0 auto;
+    position: relative;
+    color: white;
+    background-color: #2C2C2C;
+    font-family: 'Nunito', sans-serif;
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.slide {
+    margin-bottom: 20px; 
+}
+
+.inputField {
+    width: 100%;
+    max-width: 400px; 
+    padding: 10px;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 36px; 
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.equation {
+    font-size: 48px; 
+    text-align: center;
+}
+
+button {
+    background-color: #2C2C2C;
+    color: white;
+    border: none;
+    border-radius: 5%;
+    width: 100%; 
+    max-width: 500px;
+    font-size: 28px;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: rgba(207, 171, 171, 0.1);
+    color: wheat;
+    transform: scale(1.05);
+}
+
+.arrow {
+    cursor: pointer; 
+    margin-top: 10px;
+}
+
+.answers {
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 50px;
+    width: 100%; 
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    appearance: none; 
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc; 
+    border-radius: 50%; 
+    margin-right: 15px; 
+    transition: background-color 0.3s ease; 
+}
+
+input[type="radio"]:checked {
+    background-color: #4CAF50; 
+    border: 2px solid #4CAF50; 
+}
+
+.optionButton {
+    flex: 1; 
+    margin: 0 10px; 
+    height: 100px;
+    font-size: 24px; 
+    background-color: #774caf; 
+    color: white;
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.optionButton:hover {
+    background-color: #262a30; 
+    transform: scale(1.05); 
+}
+
+
+label {
+    font-size: 24px; 
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.option:hover label {
+    color: #FFCA28; 
+}
+
+.feedback {
+    font-size: 24px; 
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.correct {
+    color: rgb(9, 68, 9);
+}
+
+.incorrect {
+    color: rgb(146, 50, 50);
+}
+

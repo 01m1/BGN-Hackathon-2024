@@ -1,0 +1,48 @@
+.main {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  background-color: black;
+}
+
+.main::-webkit-scrollbar {
+  display: none;  
+}
+
+.main_video {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.slideContainer {
+  height: 100vh; 
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.arrow {
+  margin-top: 10px; 
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+}

@@ -1,29 +1,42 @@
-import { useAsyncList } from "react-stately";
-import './App.css'
+import { useEffect, useState, useRef } from "react";
+import Slide from "./Slide";
+import addSlides from "./Slides";
+import './css/App.css';
 
 function App() {
-  let list = useAsyncList({
-    async load({ signal, cursor }) {
-      // If no cursor is available, then we're loading the first page.
-      // Otherwise, the cursor is the next URL to load, as returned from the previous page.
-      let res = await fetch(
-        cursor || 'https://pokeapi.co/api/v2/pokemon',
-        { signal }
-      );
-      let json = await res.json();
-      return {
-        items: json.results,
-        cursor: json.next
-      };
-    }
-  });
-  console.log(list.items);
-  
+  const [slides, setSlides] = useState([]);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    setSlides(addSlides);
+  }, []);
+
+  const handleNextSlide = (index) => {
+    const container = containerRef.current;
+    const slideHeight = container.clientHeight;
+
+    container.scrollTo({
+      top: (index + 1) * slideHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <main>
-      <div className='loading'/>
-    </main>
-  )
+    <div className="main" ref={containerRef}>
+      <div className="main_video">
+        {slides.map((slide, index) => (
+          <Slide
+            a={slide.a}
+            b={slide.b}
+            c={slide.c}
+            sol1={slide.sol1}
+            sol2={slide.sol2} 
+            onNextSlide={() => handleNextSlide(index)} 
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
