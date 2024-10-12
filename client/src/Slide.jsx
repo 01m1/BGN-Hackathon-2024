@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import './css/Slide.css';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
-function Slide({ a, b, c, onNextSlide }) {
-    const correctAnswer = a;
-    const wrongAnswer1 = b;
-    const wrongAnswer2 = c;
+function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
+    const wrongAnswer = fakesol;
+    const correctAnswer1 = sol1;
+    const correctAnswer2 = sol2;
 
-    const options = [correctAnswer, wrongAnswer1, wrongAnswer2];
+    const options = [wrongAnswer, correctAnswer1, correctAnswer2];
 
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [submitted, setSubmitted] = useState(false);
@@ -16,10 +16,10 @@ function Slide({ a, b, c, onNextSlide }) {
     useEffect(() => {
         setSelectedAnswer(null);
         setSubmitted(false);
-    }, [a, b, c]); // Dependencies for new question values
+    }, [a, b, c]);
 
     const handleKeyPress = (event) => {
-        if (submitted) return; // Do not process key presses if already submitted
+        if (submitted) return;
         switch (event.key) {
             case 'a':
                 setSelectedAnswer(options[0]);
@@ -59,7 +59,7 @@ function Slide({ a, b, c, onNextSlide }) {
                 {options.map((option, index) => (
                     <button 
                         key={index} 
-                        className={`optionButton ${submitted ? (option === correctAnswer ? 'correct' : 'incorrect') : ''}`} 
+                        className={`optionButton ${submitted ? (option === wrongAnswer ? 'incorrect' : 'correct') : ''}`} 
                         onClick={() => {
                             setSelectedAnswer(option);
                             if (submitted) return; 
@@ -72,10 +72,15 @@ function Slide({ a, b, c, onNextSlide }) {
             </div>
 
             {submitted && (
-                <p className={`feedback ${selectedAnswer === correctAnswer ? 'correct' : 'incorrect'}`}>
-                    {selectedAnswer === correctAnswer ? 'Correct!' : 'Incorrect!'}
+                <p className={`feedback ${selectedAnswer === wrongAnswer ? 'incorrect' : 'correct'}`}>
+                    {selectedAnswer === wrongAnswer ? 'Incorrect!' : 'Correct!'}
                 </p>
             )}
+            <div className="solutionButtonContainer">
+                <button className="solButton">
+                    Generate Solution
+                </button>
+            </div>
             <ArrowDownwardIcon
                 style={{ fontSize: 60, color: 'white' }} 
                 className="arrow"

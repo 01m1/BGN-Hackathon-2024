@@ -6,143 +6,104 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 750px; 
+    max-width: 750px;
     margin: 0 auto;
-    position: relative;
     color: white;
     background-color: #2C2C2C;
     font-family: 'Nunito', sans-serif;
-    padding: 20px; 
-    border-radius: 10px; 
+    padding: 30px; 
+    border-radius: 15px; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .slide {
-    margin-bottom: 20px; 
-}
-
-.inputField {
-    width: 100%;
-    max-width: 400px; 
-    padding: 10px;
-    font-size: 24px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    background-color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .title {
-    font-size: 36px; 
-    margin-bottom: 0px;
-    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
 }
 
 .equation {
-    font-size: 48px; 
-    text-align: center;
-}
-
-button {
-    background-color: #2C2C2C;
-    color: white;
-    border: none;
-    border-radius: 5%;
-    width: 100%; 
-    max-width: 500px;
-    font-size: 28px;
-    padding: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    margin-bottom: 20px;
+    font-size: 48px;
     font-weight: bold;
-}
-
-button:hover {
-    background-color: rgba(207, 171, 171, 0.1);
-    color: wheat;
-    transform: scale(1.05);
-}
-
-.arrow {
-    cursor: pointer; 
-    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .answers {
-    display: flex; 
-    justify-content: space-between; 
-    margin-bottom: 50px;
-    width: 100%; 
-}
-
-.option {
     display: flex;
-    align-items: center;
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    appearance: none; 
-    width: 24px;
-    height: 24px;
-    border: 2px solid #ccc; 
-    border-radius: 50%; 
-    margin-right: 15px; 
-    transition: background-color 0.3s ease; 
-}
-
-input[type="radio"]:checked {
-    background-color: #4CAF50; 
-    border: 2px solid #4CAF50; 
+    justify-content: space-between;
+    gap: 10px; /* Added gap for better spacing */
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 .optionButton {
-    flex: 1; 
-    margin: 0 10px; 
-    height: 100px;
-    font-size: 24px; 
-    background-color: #774caf; 
+    flex: 1;
+    padding: 15px;
+    font-size: 22px;
+    background-color: #5C4B8A;
     color: white;
-    border: none; 
-    border-radius: 10px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease, transform 0.3s ease; 
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .optionButton:hover {
-    background-color: #262a30; 
-    transform: scale(1.05); 
+    background-color: #4E3D70;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-
-label {
-    font-size: 24px; 
-    color: white;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.option:hover label {
-    color: #FFCA28; 
+.optionButton:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .feedback {
-    font-size: 24px; 
-    font-weight: bolder;
+    font-size: 24px;
+    font-weight: bold;
     margin-top: 20px;
+    text-align: center;
 }
 
 .correct {
-    color: rgb(9, 68, 9);
+    color: #4CAF50;
 }
 
 .incorrect {
-    color: rgb(146, 50, 50);
+    color: #F44336;
 }
 
+.solutionButtonContainer {
+    margin-bottom: 20px;
+}
+
+.solButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #5C4B8A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.solButton:hover {
+    background-color: #4E3D70;
+    transform: scale(1.05);
+}
+
+.solButton:active {
+    transform: scale(0.95);
+}
+
+.arrow {
+    cursor: pointer;
+    margin-top: 20px;
+}
