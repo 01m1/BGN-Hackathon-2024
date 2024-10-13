@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1E1E1E;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
 .slideContainer {
     display: flex;
     flex-direction: column;
@@ -7,96 +15,113 @@
     justify-content: center;
     width: 100%;
     max-width: 750px;
-    margin: 0 auto;
+    margin: 50px auto;
     color: white;
     background-color: #2C2C2C;
     font-family: 'Nunito', sans-serif;
-    padding: 30px; 
-    border-radius: 15px; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 40px; 
+    border-radius: 20px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.slideContainer:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .slide {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .title {
-    font-size: 36px;
-    margin-bottom: 10px;
+    font-size: 38px;
+    margin-bottom: 100px;
+    color: #ffffff;
+    letter-spacing: 1px;
 }
 
 .equation {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    color: #ffffff;
+    display: inline-block; /* Ensure the border doesn't expand across the container */
+    padding-bottom: 5px; /* Adds a little space between the equation and the underline */
+    border-bottom: 4px solid #4E9AF1; /* Blue underline */
 }
+
+
 
 .answers {
     display: flex;
     justify-content: space-between;
-    gap: 10px; /* Added gap for better spacing */
+    gap: 15px;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .optionButton {
     flex: 1;
-    padding: 15px;
-    font-size: 22px;
+    padding: 18px;
+    font-size: 24px;
     background-color: #5C4B8A;
     color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .optionButton:hover {
     background-color: #4E3D70;
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.07);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
 }
 
 .optionButton:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transform: scale(0.93);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .feedback {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .correct {
-    color: #4CAF50;
+    color: #66BB6A;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .incorrect {
     color: #F44336;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .solutionButtonContainer {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .solButton {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #5C4B8A;
+    padding: 12px 25px;
+    font-size: 20px;
+    background-color: #202021;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .solButton:hover {
-    background-color: #4E3D70;
-    transform: scale(1.05);
+    background-color: #0d0d0e;
+    transform: scale(1.07);
 }
 
 .solButton:active {
@@ -105,5 +130,11 @@
 
 .arrow {
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 25px;
+    transition: transform 0.3s ease;
 }
+
+.arrow:hover {
+    transform: translateY(5px);
+}
+

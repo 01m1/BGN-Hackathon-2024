@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './css/Slide.css';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Navbar from './Navbar';
+import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
     const wrongAnswer = fakesol;
@@ -45,14 +47,10 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
     };
 
     useEffect(() => {
-        
-
         window.addEventListener('keydown', handleKeyPress);
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-
-        
     }, [submitted, options]);
 
     const handleSubmit = () => {
@@ -88,7 +86,7 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
             const data = await response.text();
             console.log(data);
 
-            setSolution(data.replace(/\n/g, "<br>"));
+            setSolution(data.replace(/\n/g, "<br>")); // Replace line breaks with HTML <br> tags
             
         } catch (error) {
             console.error('Error:', error);
@@ -97,11 +95,20 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
     };
 
     return (
+        <MathJaxContext>
+        <div>             
+        <div>
+            <Navbar />
+        </div>
         <div className="slideContainer">
+
             <div className="slide">
-                <h1 className="title">Solve for x</h1>
-                <h1 className="equation">{a}x<sup>2</sup> + {b}x + {c} = 0</h1>
+            <h1 className="title">Find the incorrect solution</h1>
+                <div className="equation">
+                    <MathJax>{`\\(${a}x^2 + ${b}x + ${c} = 0\\)`}</MathJax>
+                </div>
             </div>
+
             <div className="answers">
                 {options.map((option, index) => (
                     <button 
@@ -113,26 +120,26 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
                             handleSubmit();                  
                         }}
                     >
-                        {option}
+                        <MathJax>{`\\(${option}\\)`}</MathJax> {/* Render answers as LaTeX */}
                     </button>
                 ))}
             </div>
 
             {submitted && (
                 <p className={`feedback ${selectedAnswer === wrongAnswer ? 'incorrect' : 'correct'}`}>
-                    {selectedAnswer === wrongAnswer ? 'Incorrect!' : 'Correct!'}
+                    <MathJax>{selectedAnswer === wrongAnswer ? 'Incorrect!' : 'Correct!'}</MathJax>
                 </p>
             )}
 
             <div className="solutionButtonContainer">
                 <button className="solButton" onClick={() => {handleGenerateSolution(a, b, c)}}>
-                    Generate Solution
+                ✨ Generate Solution
                 </button>
             </div>
 
             {/* Display the solution with HTML rendering */}
             {solution && (
-                <div className="solutionDisplay" dangerouslySetInnerHTML={{ __html: solution }} />
+                <div className="solutionDisplay" dangerouslySetInnerHTML={{ __html: solution }} /> 
             )}
 
             <ArrowDownwardIcon
@@ -140,7 +147,10 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
                 className="arrow"
                 onClick={handleNextSlide} 
             />
+            
         </div>
+        </div>
+        </MathJaxContext>
     );
 }
 

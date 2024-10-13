@@ -11,7 +11,7 @@ html, body {
   scroll-snap-type: y mandatory; 
   -ms-overflow-style: none;  
   scrollbar-width: none;  
-  background-color: black;
+  background-color: rgb(31, 30, 30);
 }
 
 .main::-webkit-scrollbar {
