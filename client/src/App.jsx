@@ -35,20 +35,18 @@ function App() {
     const container = containerRef.current;
     const slideHeight = container.clientHeight; 
 
-    const currentScrollPosition = container.scrollTop;
-    const maxScrollPosition = container.scrollHeight - slideHeight;
-
-    if (currentScrollPosition < maxScrollPosition) {
-      container.scrollTo({
-        top: currentScrollPosition + slideHeight,
+    container.scrollTo({
+        top: container.scrollTop + slideHeight,
         behavior: "smooth",
-      });
-    }
+    });
 
-    if (Math.ceil(currentScrollPosition / slideHeight) === slideCount - 2) {
-      addMoreSlides(); 
+    const currentSlideIndex = Math.floor(container.scrollTop / slideHeight);
+
+    if (currentSlideIndex === slideCount - 2) {
+        addMoreSlides(); 
     }
   };
+
 
   const addMoreSlides = async () => {
     const newSlides = await addSlides();
