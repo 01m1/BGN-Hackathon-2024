@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./EduBytesQuickFire.css"; // Ensure this is the updated file name
+import "./EduBytesQuickFire.css"; //
 
 function EduBytesQuickFire() {
   const [equation, setEquation] = useState("");
@@ -149,4 +149,4 @@ function EduBytesQuickFire() {
   );
 }
 
-export default EduBytesQuickFire; // Make sure to export your component correctly
+export default EduBytesQuickFire; //
