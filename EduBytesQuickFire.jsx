@@ -65,7 +65,7 @@ function EduBytesQuickFire() {
       () => Math.random() - 0.5
     );
     setRoots(options);
-    setFakeSolution(fakeSolution); // Store the fake solution for comparison later
+    setFakeSolution(fakeSolution); // Stores the fake solution for comparison later
   };
 
   const handleSelect = (option) => {
@@ -74,7 +74,7 @@ function EduBytesQuickFire() {
 
     // Check if the selected option is the fake solution
     if (option === fakeSolution) {
-      setFeedback("Correct! ✅"); // Fake solution is correct
+      setFeedback("Correct! ✅"); // Fake solution marks as correct
       setScore((prevScore) => prevScore + 1);
     } else {
       setFeedback("Wrong! ❌"); // Real solutions are incorrect
