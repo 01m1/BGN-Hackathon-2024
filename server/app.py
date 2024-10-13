@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify #pip install flask
+from flask_cors import CORS
 import google.generativeai as genai  #pip install google-generativeai
+import json
 
 highestStreak = 0
 totalAnswered = 0
@@ -7,6 +9,7 @@ totalCorrect = 0
 totalSpeed = 0
 
 app = Flask(__name__)
+CORS(app)
 
 
 genai.configure(api_key="AIzaSyDtbKx-25i0t8YfQGszgeCy-1mrI1Sj0b4")
@@ -46,11 +49,15 @@ def getQuestions(numQuestions):
     )
 
     response = chat_session.send_message(f"Generate {numQuestions} Questions")
-
-    return (response.text)
+    json_string = response.text
+    start_index = json_string.index('[', json_string.index('```'))
+    end_index = json_string.index('```', start_index)
+    json_data = json_string[start_index:end_index].strip()
+    print(json_data)
+    return json.loads(json_data), 200
 
 @app.route('/api/gemSol/<int:a>/<int:b>/<int:c>', methods=['GET'])
-def getGeminiSol(a,b,c):
+def getGeminiSol(a, b, c):
     chat_session = model.start_chat(
         history=[
             {
@@ -61,8 +68,12 @@ def getGeminiSol(a,b,c):
             },
         ]
     )
-    response = response = chat_session.send_message(f"Provide a step by step solution to solving this quadratic by factorising {a}x^2 + {b}x + {c}")
-    return response.text
+    response = chat_session.send_message(f"Provide a step by step solution to solving this quadratic by factorising {a}x^2 + {b}x + {c}")
+    
+    formatted_response = response.text.replace('**', '\n')
+    
+    return formatted_response
+
 
 @app.route('/api/profileStatistics', methods=['GET'])
 def getProfileStatistics():

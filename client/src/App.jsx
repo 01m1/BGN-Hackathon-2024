@@ -1,18 +1,23 @@
 import { useEffect, useState, useRef } from "react";
 import Slide from "./Slide";
-import addSlides from "./Slides";
+import addSlides from "./Slides"; 
 import './css/App.css';
 
 function App() {
   const [slides, setSlides] = useState([]);
   const containerRef = useRef(null);
+  const [slideCount, setSlideCount] = useState(0); 
 
   useEffect(() => {
-    setSlides(addSlides);
+    const loadSlides = async () => {
+      const initialSlides = await addSlides();
+      setSlides(initialSlides);
+      setSlideCount(initialSlides.length);
+    };
+    loadSlides(); 
   }, []);
 
   useEffect(() => {
-    // Add event listener for keydown
     const handleKeyDown = (event) => {
       if (event.key === "ArrowDown") {
         handleNextSlide();
@@ -28,19 +33,27 @@ function App() {
 
   const handleNextSlide = () => {
     const container = containerRef.current;
-    const slideHeight = container.clientHeight; // Use the container's height to calculate scroll
+    const slideHeight = container.clientHeight; 
 
-    // Get the current scroll position and calculate the next position
     const currentScrollPosition = container.scrollTop;
     const maxScrollPosition = container.scrollHeight - slideHeight;
 
-    // Scroll to the next slide, if not already at the bottom
     if (currentScrollPosition < maxScrollPosition) {
       container.scrollTo({
         top: currentScrollPosition + slideHeight,
         behavior: "smooth",
       });
     }
+
+    if (Math.ceil(currentScrollPosition / slideHeight) === slideCount - 2) {
+      addMoreSlides(); 
+    }
+  };
+
+  const addMoreSlides = async () => {
+    const newSlides = await addSlides();
+    setSlides((prevSlides) => [...prevSlides, ...newSlides]);
+    setSlideCount((prevCount) => prevCount + newSlides.length); 
   };
 
   return (
@@ -55,7 +68,7 @@ function App() {
             sol1={slide.sol1}
             sol2={slide.sol2}
             fakesol={slide.fakesol}
-            onNextSlide={() => handleNextSlide()} // Move to next slide on action
+            onNextSlide={handleNextSlide}
           />
         ))}
       </div>
