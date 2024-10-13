@@ -12,6 +12,7 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [solution, setSolution] = useState(""); // State to store the solution
+    const [streak, setStreak] = useState(0);
 
     useEffect(() => {
         resetStates();
@@ -44,19 +45,31 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
     };
 
     useEffect(() => {
+        
+
         window.addEventListener('keydown', handleKeyPress);
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
+
+        
     }, [submitted, options]);
 
     const handleSubmit = () => {
+        if (!submitted) {
+            if (selectedAnswer !== wrongAnswer) {
+                setStreak(1);
+            } else {
+                setStreak(0);
+            }
+        }
+
         setSubmitted(true);
     };
 
     const handleNextSlide = () => {
         resetStates();
-        onNextSlide();
+        onNextSlide(streak);
     };
 
     const handleGenerateSolution = async (a, b, c) => {

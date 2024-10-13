@@ -6,7 +6,10 @@ import './css/App.css';
 function App() {
   const [slides, setSlides] = useState([]);
   const containerRef = useRef(null);
-  const [slideCount, setSlideCount] = useState(0); 
+  const [slideCount, setSlideCount] = useState(0);
+  const [streakk, setStreak] = useState(1);
+  const [incorrect, setIncorrect] = useState(0);
+  const [correct, setCorrect] = useState(0);
 
   useEffect(() => {
     const loadSlides = async () => {
@@ -20,7 +23,7 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowDown") {
-        handleNextSlide();
+        handleNextSlide;
       }
     };
 
@@ -31,9 +34,44 @@ function App() {
     };
   }, []);
 
-  const handleNextSlide = () => {
+  const updateInfo = async (streak, correct, incorrect) => {
+    try {
+        const response = await fetch('http://localhost:5000/api/updateStatistics', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                streak: streak, // current streak
+                correct: correct, // total correct answers
+                answered: correct + incorrect // total answers
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log('Statistics updated successfully!');
+        
+    } catch (error) {
+        console.error('Error:', error);
+    }
+  };
+
+
+  const handleNextSlide = (streak) => {
     const container = containerRef.current;
     const slideHeight = container.clientHeight; 
+    if (streak == 0) {
+      setStreak(0);
+      setIncorrect(incorrect + 1);
+    } else {
+      setStreak(streakk + streak);
+      setCorrect(correct + 1);
+    }
+
+    console.log("!!!", streakk);
 
     container.scrollTo({
         top: container.scrollTop + slideHeight,
@@ -43,8 +81,10 @@ function App() {
     const currentSlideIndex = Math.floor(container.scrollTop / slideHeight);
 
     if (currentSlideIndex === slideCount - 2) {
-        addMoreSlides(); 
+      addMoreSlides(); 
     }
+
+    updateInfo();
   };
 
 
