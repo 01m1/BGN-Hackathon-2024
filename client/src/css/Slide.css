@@ -1,8 +1,12 @@
+/* Import the Nunito font */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
 
+* {
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 body {
-    margin: 0;
-    padding: 0;
+    width: 100%;
     background-color: #1E1E1E;
     color: white;
     font-family: 'Nunito', sans-serif;
@@ -13,16 +17,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 750px;
-    margin: 50px auto;
+
     color: white;
     background-color: #2C2C2C;
     font-family: 'Nunito', sans-serif;
     padding: 40px; 
-    border-radius: 20px; 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .slideContainer:hover {
@@ -51,8 +53,6 @@ body {
     padding-bottom: 5px; /* Adds a little space between the equation and the underline */
     border-bottom: 4px solid #4E9AF1; /* Blue underline */
 }
-
-
 
 .answers {
     display: flex;
@@ -104,11 +104,15 @@ body {
 }
 
 .solutionButtonContainer {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the button horizontally */
     margin-bottom: 25px;
+    width: 100%; /* Full width */
+    overflow: hidden; /* Prevent overflow */
 }
 
 .solButton {
-    padding: 12px 25px;
+    padding: 12px 20px; /* Adjust padding */
     font-size: 20px;
     background-color: #202021;
     color: white;
@@ -117,6 +121,10 @@ body {
     font-family: 'Nunito', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    max-width: 100%; /* Ensure it doesn't exceed the container */
+    overflow: hidden; /* Prevent content overflow */
+    white-space: nowrap; /* Prevent text wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
 }
 
 .solButton:hover {
@@ -128,6 +136,7 @@ body {
     transform: scale(0.95);
 }
 
+
 .arrow {
     cursor: pointer;
     margin-top: 25px;
@@ -137,4 +146,3 @@ body {
 .arrow:hover {
     transform: translateY(5px);
 }
-

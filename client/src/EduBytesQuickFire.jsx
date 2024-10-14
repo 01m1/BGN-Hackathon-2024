@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./EduBytesQuickFire.css"; //
+import "./css/EduBytesQuickFire.css"; // Ensure your CSS file is linked correctly
+import Navbar from "./Navbar";
+import { MathJax, MathJaxContext } from "better-react-mathjax"; // Import MathJax
 
 function EduBytesQuickFire() {
   const [equation, setEquation] = useState("");
@@ -20,7 +22,6 @@ function EduBytesQuickFire() {
   };
 
   const generateQuadraticEquation = () => {
-    // Randomly generate two distinct positive integers as roots
     const r1 = getRandomInt(1, 5);
     let r2;
     do {
@@ -61,9 +62,7 @@ function EduBytesQuickFire() {
       fakeSolution = getRandomInt(1, 10); // Generate a positive fake solution
     } while (rootsArray.includes(fakeSolution)); // Ensure it's not one of the real roots
 
-    const options = [...rootsArray, fakeSolution].sort(
-      () => Math.random() - 0.5
-    );
+    const options = [...rootsArray, fakeSolution].sort(() => Math.random() - 0.5);
     setRoots(options);
     setFakeSolution(fakeSolution); // Stores the fake solution for comparison later
   };
@@ -114,39 +113,42 @@ function EduBytesQuickFire() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>EduBytes Quickfire Mode</h1>
-      <h2>Time Left: {timeLeft} seconds</h2>
-      {equation && (
-        <>
-          <h2>Generated Equation:</h2>
-          <p>{equation}</p>
-          <h3>Choose the incorrect solution:</h3>
-          {roots.map((option, index) => (
-            <button key={index} onClick={() => handleSelect(option)}>
-              {option}
-            </button>
-          ))}
-          {selectedAnswer && (
-            <p>
-              You selected: {selectedAnswer} - {feedback}
-            </p>
-          )}
-          <div className="timer-container">
-            <div
-              className="progress-bar"
-              style={{
-                height: "10px",
-                width: `${(timeLeft / 60) * 100}%`,
-                backgroundColor: "#6200ea",
-                transition: "width 1s linear",
-              }}
-            ></div>
-          </div>
-        </>
-      )}
-    </div>
+    <MathJaxContext>
+      <div className="main-container">
+        <Navbar />
+        <h1>EduBytes Quickfire Mode</h1>
+        <h2 style={{ marginBottom: "20px" }}>Time Left: {timeLeft} seconds</h2>
+        {equation && (
+          <>
+            <h2 className="math-equation">
+              <MathJax inline>{"$$" + equation + "$$"}</MathJax>
+            </h2>
+            <h3>Choose the incorrect solution:</h3>
+            <div className="button-container">
+              {roots.map((option, index) => (
+                <button key={index} onClick={() => handleSelect(option)}>
+                  {option}
+                </button>
+              ))}
+            </div>
+            {selectedAnswer && (
+              <p className="feedback">
+                You selected: {selectedAnswer} - {feedback}
+              </p>
+            )}
+            <div className="timer-container">
+              <div
+                className="progress-bar"
+                style={{
+                  width: `${(timeLeft / 60) * 100}%`,
+                }}
+              ></div>
+            </div>
+          </>
+        )}
+      </div>
+    </MathJaxContext>
   );
 }
 
-export default EduBytesQuickFire; //
+export default EduBytesQuickFire;

@@ -14,8 +14,6 @@ CORS(app)
 
 genai.configure(api_key="AIzaSyDtbKx-25i0t8YfQGszgeCy-1mrI1Sj0b4")
 
-
-
 # Create the model
 generation_config = {
   "temperature": 1,

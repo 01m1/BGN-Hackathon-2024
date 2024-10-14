@@ -96,6 +96,7 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
 
     return (
         <MathJaxContext>
+        <body>
         <div>             
         <div>
             <Navbar />
@@ -150,7 +151,9 @@ function Slide({ a, b, c, sol1, sol2, fakesol, onNextSlide }) {
             
         </div>
         </div>
+        </body>
         </MathJaxContext>
+        
     );
 }
 

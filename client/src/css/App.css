@@ -7,15 +7,14 @@ html, body {
 
 .main {
   height: 100vh;
-  overflow-y: auto; /* Change to auto to allow for proper scrolling */
-  scroll-snap-type: y mandatory; 
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
-  background-color: rgb(31, 30, 30);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .main::-webkit-scrollbar {
-  display: none;  
+  display: none;  /* Chrome, Safari, and Opera */
 }
 
 .main_video {
@@ -24,22 +23,9 @@ html, body {
 }
 
 .slideContainer {
-  height: 100vh; 
+  height: 100vh;
   scroll-snap-align: start;
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  align-items: center; 
   position: relative;
-  max-width: 750px; 
-  margin: 0 auto; 
-}
-
-.slide img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
 .arrow {
